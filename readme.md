@@ -1,7 +1,7 @@
 # Dataset:
 - We using data from camera captures fruits with white background
 # Before running project, you need:
-1. Install Python 3
+1. Install Python 3.7
 
 2. Setup interpreter: Goto Pycharm --> File --> Settings --> Project:FruitClassification --> Python interpreter --> Add
     --> Virtualenv environment --> new environment --> Ok 
@@ -15,3 +15,5 @@
 ## - For using model to classification 
 - main.py: turn on camera and capture fruit images, then classify them 
 - test.py: test model with folder image 
+
+If have error when load model, doing run: pip install h5py==2.10.0 --force-reinstall to install h5py version 2.10.0
