@@ -51,7 +51,7 @@ def realtime_cam():
         print(color_predict)
         # ==============================
 
-        cv2.putText(image, color_predict, (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
+        cv2.putText(image, color_predict, (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 3, (255, 0, 0), 2, cv2.LINE_AA)
         cv2.imshow("images", image)
 
         if cv2.waitKey(10) & 0xFF == ord('q'):  # close the camera with press 'q'

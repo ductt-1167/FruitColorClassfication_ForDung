@@ -77,7 +77,7 @@ def build_network(shape, size_output):
 
 
 # get data
-matrix, labels = get_data('data/')
+matrix, labels = get_data('data/data/')
 X_train, X_test, y_train, y_test = train_test_split(matrix, labels, test_size=0.1, random_state=42)
 
 # ===================================================================================
@@ -85,7 +85,7 @@ X_train, X_test, y_train, y_test = train_test_split(matrix, labels, test_size=0.
 input_shape = (size_img_1, size_img_2, 3)
 
 model = build_network(input_shape, output_shape)
-model.compile(optimizer='adam',
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.00001),
               loss=tf.keras.losses.categorical_crossentropy,
               metrics=['accuracy'])
 history = model.fit(X_train, y_train,
