@@ -8,8 +8,8 @@ import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras import layers
 
-size_img_1 = 64
-size_img_2 = 64
+size_img_1 = 28
+size_img_2 = 28
 output_shape = 3
 
 # define output
@@ -65,9 +65,7 @@ def build_network(shape, size_output):
 
     network.add(layers.Flatten(input_shape=shape))
     network.add(layers.BatchNormalization())
-    network.add(layers.Dense(units=256, activation='relu'))
-    network.add(layers.Dropout(0.3))
-    network.add(layers.Dense(units=64, activation='relu'))
+    network.add(layers.Dense(units=128, activation='relu'))
     network.add(layers.Dropout(0.3))
     network.add(layers.Dense(units=size_output, activation='softmax'))
 
@@ -78,18 +76,18 @@ def build_network(shape, size_output):
 
 # get data
 matrix, labels = get_data('data/data/')
-X_train, X_test, y_train, y_test = train_test_split(matrix, labels, test_size=0.1, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(matrix, labels, test_size=0.3, random_state=42)
 
 # ===================================================================================
 # training
 input_shape = (size_img_1, size_img_2, 3)
 
 model = build_network(input_shape, output_shape)
-model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.00001),
-              loss=tf.keras.losses.categorical_crossentropy,
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.0001),
+              loss=tf.keras.losses.binary_crossentropy,
               metrics=['accuracy'])
 history = model.fit(X_train, y_train,
-                    epochs=100)
+                    epochs=50)
 
 # plot the acc and loss
 pd.DataFrame(history.history).plot(figsize=(8, 5))
